@@ -122,6 +122,4 @@ int main() {
   }
   
   displayFinalResults(questions, correctTally);
-  // cout << "\n" << num1 << " " << oper << " " << num2 << "\n";
-  // cout << "= " << result;
 }
