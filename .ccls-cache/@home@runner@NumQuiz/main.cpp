@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include <ctime>
 #include <limits>
+#include <cstdlib>
 
 using namespace std;
 
@@ -18,6 +19,7 @@ char displayMenu(){
   cin >> dif;
   dif = toupper(dif);
   if(dif == 'E' || dif == 'M' || dif == 'A'){
+    cout << "valid inp";
     return dif;
   } else {
     invalidInput();    
@@ -27,6 +29,7 @@ char displayMenu(){
 
 // Returns a random integer between two arguments
 int randomInt(int min, int max){
+  cout << rand();
 }
 
 // Prompts and takes user input of difficulty
@@ -55,5 +58,6 @@ void displayFinalResults(){
 int main() {
   const char difficulty = displayMenu();  
   cout << difficulty;
+  randomInt(1,10);
   
 }
