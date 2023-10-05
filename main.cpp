@@ -53,7 +53,7 @@ int calculateResult(int num1, int num2, char oper) {
 // Prompts and takes user input of answer
 long displayProblem(int num1, int num2, char oper) {
   long answer;
-  cout << "\nWhat is:\n"
+  cout << "\n\nWhat is:\n"
        << num1 << " " << oper << " " << num2 << "?"
        << "\n";
   cin >> answer;
@@ -72,7 +72,7 @@ bool isCorrect(int result, int answer) {
 void displayMessage(bool correct, int chances, int correctTally) {
   // Outputs correct or incorrect, and displays if the user has another chance
   if (correct) {
-    cout << "\nCorrect answer!\n";
+    cout << "\n\033[1;32mCorrect answer!\033[0m\n";
   } else {
     cout << "\n\033[1;31mIncorrect\033[0m";
     if (chances >= 2) {
