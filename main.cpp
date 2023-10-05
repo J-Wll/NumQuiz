@@ -6,14 +6,14 @@
 
 using namespace std;
 
+// resets cin after bad input
 void invalidInput() {
   cout << "\n\033[1;31mInvalid input\033[0m\n";
   cin.clear();
   cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
-// Prompts for and takes input of a char representing difficulty (Easy,
-// Moderate, Advanced)
+// Prompts for and takes input of a char representing difficulty (Easy, Moderate, Advanced)
 char displayMenu() {
   char dif;
   cout << "Welcome to NumQuiz\n\nEnter your desired difficulty (Please enter "
@@ -31,6 +31,7 @@ char displayMenu() {
 // Returns a random integer between two arguments
 int randomInt(int min, int max) { return rand() % (max - min + 1) + min; }
 
+// Generates numbers based on difficulty
 int generateOperands(char dif) {
   if (dif == 'E') {
     return randomInt(1, 9);
@@ -41,8 +42,10 @@ int generateOperands(char dif) {
   }
 }
 
+// Determines operator based on evenness of num1
 char randomOperator(int num1) { return num1 % 2 == 0 ? '+' : '-'; }
 
+// Returns the correct result
 int calculateResult(int num1, int num2, char oper) {
   if (oper == '+') {
     return num1 + num2;
@@ -69,8 +72,8 @@ bool isCorrect(int result, int answer) {
   return result == answer ? true : false;
 }
 
-void displayMessage(bool correct, int chances, int correctTally) {
   // Outputs correct or incorrect, and displays if the user has another chance
+void displayMessage(bool correct, int chances, int correctTally) {
   if (correct) {
     cout << "\n\033[1;32mCorrect answer!\033[0m\n";
   } else {
@@ -83,8 +86,10 @@ void displayMessage(bool correct, int chances, int correctTally) {
   }
 }
 
-void displayFinalResults() {
-  // Tally of correct and incorrect answers
+// Tally of correct and incorrect answers
+void displayFinalResults(int questions, int correctTally) {
+  cout << "You got " << correctTally << " right and "<< questions-correctTally << " wrong";
+  
 }
 
 int main() {
@@ -94,8 +99,6 @@ int main() {
   srand(time(NULL));
   const char difficulty = displayMenu();
   cout << difficulty;
-  // for (int i = 0; i<1000; i++){
-  // cout << "\n"<<randomInt(10, 100);};
 
   // Outer loop for all the questions
   for (int i = 0; i < questions; i++) {
@@ -114,14 +117,11 @@ int main() {
         break;
       } else {
         chances -= 1;
-        // if (chances < 1) {
-        //   continue;
-        // }
       }
     }
   }
-  cout << "You got " << correctTally << " right!";
-
+  
+  displayFinalResults(questions, correctTally);
   // cout << "\n" << num1 << " " << oper << " " << num2 << "\n";
   // cout << "= " << result;
 }
