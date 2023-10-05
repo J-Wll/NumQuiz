@@ -19,7 +19,6 @@ char displayMenu(){
   cin >> dif;
   dif = toupper(dif);
   if(dif == 'E' || dif == 'M' || dif == 'A'){
-    cout << "valid inp";
     return dif;
   } else {
     invalidInput();    
@@ -29,21 +28,38 @@ char displayMenu(){
 
 // Returns a random integer between two arguments
 int randomInt(int min, int max){
-  cout << rand();
+  return rand() % (max - min +1) + min;  
 }
 
-// Prompts and takes user input of difficulty
-void generateOperands(char difficulty){
+int generateOperands(char dif){
+  if (dif == 'E'){
+    return randomInt(1,9);
+  }
+  else if (dif == 'M'){
+    return randomInt(10,99);
+  }
+  else{
+    return randomInt(1000,9999);
+  }
   
 }
 
+char randomOperator(int num1){return num1%2==0 ? '+' : '-';}
+
+int calculateResult(int num1, int num2, char oper){
+  if (oper == '+'){
+    return num1 + num2;
+  }
+  return num1-num2;
+}
+
 // Prompts and takes user input of answer
-long int displayProblem(int operand1, int operand2){
+long int displayProblem(int num1, int num2, char oper){
   
 }
 
 // Returns true/false depending on answer
-bool isCorrect(int operand1, int operand2, int answer){
+bool isCorrect(int result, int answer){
   
 }
 
@@ -56,8 +72,18 @@ void displayFinalResults(){
 }
 
 int main() {
+  srand(time(NULL));
   const char difficulty = displayMenu();  
   cout << difficulty;
-  randomInt(1,10);
+  // for (int i = 0; i<1000; i++){
+  // cout << "\n"<<randomInt(10, 100);};
+  const int num1 = generateOperands(difficulty);
+  const int num2 = generateOperands(difficulty);
+  const char oper = randomOperator(num1);
+  const int result = calculateResult(num1, num2, oper);
+  
+
+  cout << "\n" << num1 << " " << oper << " " << num2 << "\n";
+  cout << "= " << result;
   
 }
